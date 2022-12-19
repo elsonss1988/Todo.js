@@ -1,4 +1,5 @@
-import { Tarefa } from "./criaTarefa.js"
+import { criaData } from "./criarData.js"
+import {ordenaDatas, removeDataRepetidas} from "./datas.js"
 
 export const carregaTarefa = () => {
     const lista = document.querySelector('[data-list]')
@@ -7,8 +8,12 @@ export const carregaTarefa = () => {
 
     lista.innerHTML = ""
 
-    tarefasCadastradas.forEach((tarefa)=>{
-        lista.appendChild(Tarefa(tarefa))
+    const dataUnicas = removeDataRepetidas(tarefasCadastradas)
+    ordenaDatas
+    dataUnicas.forEach((dia)=>{
+        // const dia= moment(tarefa.dataFormata, 'DD/MM/YYYY')
+        lista.appendChild(criaData(dia))
+        
     })
 
     console.log(tarefasCadastradas)
